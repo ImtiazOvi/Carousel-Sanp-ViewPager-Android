@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.imtiaz.carousel_snap_android.R;
 import com.imtiaz.carousel_snap_android.model.ItemModel;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private ShadowTransformer mCardShadowTransformer;
     private ShadowTransformer mFragmentCardShadowTransformer;
     private ArrayList<ItemModel> arrayList = new ArrayList<>();
-
+    private String itemPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +67,33 @@ public class MainActivity extends AppCompatActivity {
 
         mCardShadowTransformer = new ShadowTransformer(mViewPager, mCardAdapter);
 
+        itemPosition = String.valueOf(mViewPager.getCurrentItem());
+         Log.d("CurrentPos","Without scrolling position is-----: "+ itemPosition);
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                itemPosition = String.valueOf(mViewPager.getCurrentItem());
+                Log.d("CurrentPos","After scrolling position is-----: "+ itemPosition);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
         mViewPager.setAdapter(mCardAdapter);
         mViewPager.setPageTransformer(false, mCardShadowTransformer);
         mViewPager.setOffscreenPageLimit(3);
+
     }
 
 

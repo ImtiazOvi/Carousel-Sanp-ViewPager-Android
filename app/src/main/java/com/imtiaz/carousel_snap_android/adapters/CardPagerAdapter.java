@@ -1,6 +1,7 @@
 package com.imtiaz.carousel_snap_android.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,6 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
         // Getting sub title from model
         txtSubTitle.setText(model.getSubTitle());
-
 
 
 
